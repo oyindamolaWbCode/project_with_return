@@ -1,7 +1,7 @@
 const postsList = document.querySelector('.posts-list');
 const addPostForm = document.querySelector('.add-post-form');
-const titleValue = document.getElementById('title-value');
-const bodyValue = document.getElementById('body-value');
+const titleValue = document.querySelector('#title-value');
+const bodyValue = document.querySelector('#body-value');
 
 let output = '';
 
@@ -12,7 +12,7 @@ const renderPosts = (posts) =>{
         <div class="card mt-4 col-md-6 bg-ligt">
         <div class="card-body">
           <h5 class="card-title">${post.title}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">${post.date}</h6>
+          <h6 class="card-subtitle mb-2 text-muted"></h6>
           <p class="card-text">${post.body}</p>
           <a href="#" class="card-link">Edit</a>
           <a href="#" class="card-link">Delete</a>
@@ -21,7 +21,7 @@ const renderPosts = (posts) =>{
         `;
        
      });
-      postsList.innerHTML = output
+      postsList.innerHTML = output;
 
 }
 
@@ -54,11 +54,12 @@ addPostForm.addEventListener('submit', (e) =>{
             body:bodyValue.value
         })
     })
-
+    
     .then(response => response.json())
     .then(data => {
-        const dataArr = [];
-        dataArr.push(data);
-        renderPosts(dataArr);
-    })
+    const dataArr = [];
+    dataArr.push(data);
+    renderPosts(dataArr);
+ })
+
 })
